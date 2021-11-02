@@ -1,0 +1,24 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: okrusermanagement 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: okrusermanagement
+  template:
+    metadata:
+      labels:
+        app: okrusermanagement 
+    spec:
+      containers:
+        - name: okrusermanagement 
+          image: unlockokrregistrydev.azurecr.io/okrusermanagement
+          ports:
+          - containerPort: 80
+          env:
+          - name: "ASPNETCORE_ENVIRONMENT"
+            value: "Development"
+          - name: "ASPNETCORE_FORWARDEDHEADERS_ENABLED"
+            value: "true"
